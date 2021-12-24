@@ -1,4 +1,4 @@
-package com.dflorencia.themovieapp.overview
+package com.dflorencia.themovieapp.movie
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,27 +9,27 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dflorencia.themovieapi.movie.Movie
 import com.dflorencia.themovieapp.R
-import com.dflorencia.themovieapp.databinding.ItemViewBinding
+import com.dflorencia.themovieapp.databinding.ItemMovieBinding
 
 class MovieAdapter(private val clickListener: MovieClickListener): ListAdapter<Movie, MovieAdapter.MovieViewHolder>(
     ItemDiffCallback()
 ) {
 
-    private var lastPosition = -1
+//    private var lastPosition = -1
 
-    class MovieViewHolder private constructor(val binding: ItemViewBinding):
+    class MovieViewHolder private constructor(val binding: ItemMovieBinding):
         RecyclerView.ViewHolder(binding.root){
         fun bind(movie: Movie, clickListener: MovieClickListener){
-            binding.movie = movie;
-            binding.clickListener = clickListener;
-            binding.executePendingBindings();
+            binding.movie = movie
+            binding.clickListener = clickListener
+            binding.executePendingBindings()
         }
 
         companion object {
             fun from(parent: ViewGroup): MovieViewHolder {
-                val layoutInflater = LayoutInflater.from(parent.context);
-                val binding = ItemViewBinding.inflate(layoutInflater, parent, false);
-                return MovieViewHolder(binding);
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = ItemMovieBinding.inflate(layoutInflater, parent, false)
+                return MovieViewHolder(binding)
             }
         }
     }
@@ -49,15 +49,16 @@ class MovieAdapter(private val clickListener: MovieClickListener): ListAdapter<M
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val item = getItem(position) as Movie
+        val item = getItem(position)
         holder.bind(item, clickListener)
 
         val animation: Animation = AnimationUtils.loadAnimation(
             holder.binding.root.context,
-            if (position > lastPosition) R.anim.up_from_bottom else R.anim.down_from_top
+            R.anim.down_from_top
+//            if (position > lastPosition) R.anim.up_from_bottom else R.anim.down_from_top
         )
         holder.itemView.startAnimation(animation)
-        lastPosition = position
+//        lastPosition = position
     }
 
     override fun onViewDetachedFromWindow(holder: MovieViewHolder) {
@@ -66,6 +67,6 @@ class MovieAdapter(private val clickListener: MovieClickListener): ListAdapter<M
     }
 
     class MovieClickListener(val clickListener: (movie: Movie) -> Unit){
-        fun onClick(movie: Movie) = clickListener(movie);
+        fun onClick(movie: Movie) = clickListener(movie)
     }
 }

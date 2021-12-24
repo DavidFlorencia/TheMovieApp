@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.dflorencia.themovieapi.movie.Movie
 import com.dflorencia.themovieapp.R
 import com.dflorencia.themovieapp.databinding.FragmentOverviewBinding
+import com.dflorencia.themovieapp.movie.MovieAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

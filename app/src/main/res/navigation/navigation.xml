@@ -26,9 +26,9 @@
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.dflorencia.themovieapp.detail.movie.DetailFragment"
+        android:name="com.dflorencia.themovieapp.movie.MovieFragment"
         android:label="DetailFragment"
-        tools:layout="@layout/fragment_detail">
+        tools:layout="@layout/fragment_movie">
 
         <argument
             android:name="movie"

@@ -1,4 +1,4 @@
-package com.dflorencia.themovieapp.detail.movie
+package com.dflorencia.themovieapp.movie
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailViewModel @Inject constructor(val appRepository: com.dflorencia.themovierepository.AppRepository): ViewModel(){
+class MovieViewModel @Inject constructor(val appRepository: com.dflorencia.themovierepository.AppRepository): ViewModel(){
 
     private val _movie = MutableLiveData<Movie>();
     val movie: LiveData<Movie> get() = _movie

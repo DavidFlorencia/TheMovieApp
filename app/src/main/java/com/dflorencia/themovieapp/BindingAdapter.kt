@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dflorencia.themovieapi.movie.Movie
-import com.dflorencia.themovieapp.overview.MovieAdapter
+import com.dflorencia.themovieapp.movie.MovieAdapter
 import com.dflorencia.themovieapp.overview.ApiStatus
 
 @BindingAdapter("data")

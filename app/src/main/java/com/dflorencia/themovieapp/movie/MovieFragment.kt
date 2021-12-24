@@ -1,4 +1,4 @@
-package com.dflorencia.themovieapp.detail.movie
+package com.dflorencia.themovieapp.movie
 
 import android.content.Context
 import android.content.Intent
@@ -6,7 +6,6 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,10 +18,10 @@ import com.dflorencia.themovieapp.databinding.FragmentDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DetailFragment:Fragment() {
+class MovieFragment:Fragment() {
 
     private val args: DetailFragmentArgs by navArgs()
-    private val viewModel: DetailViewModel by viewModels()
+    private val viewModel: MovieViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +51,6 @@ class DetailFragment:Fragment() {
 
         binding.imgPlayIcon.setOnClickListener {
             val test = "https://www.youtube.com/watch?v=${viewModel.trailerKey.value}"
-            Log.d("Prueba",test)
             val intent = Intent(Intent.ACTION_VIEW,
                 Uri.parse(test))
 
