@@ -5,19 +5,19 @@
 
     <data>
         <variable
-            name="movie"
-            type="com.dflorencia.themovieapi.movie.Movie" />
+            name="tvShow"
+            type="com.dflorencia.themovieapi.tv_show.TvShow" />
 
         <variable
             name="clickListener"
-            type="com.dflorencia.themovieapp.movie.MovieAdapter.MovieClickListener" />
+            type="com.dflorencia.themovieapp.tv_show.TvShowAdapter.TvShowClickListener" />
     </data>
 
     <LinearLayout
         android:layout_width="@dimen/item_width"
         android:layout_height="@dimen/item_height"
         android:orientation="vertical"
-        android:onClick="@{()->clickListener.onClick(movie)}">
+        android:onClick="@{()->clickListener.onClick(tvShow)}">
 
         <ImageView
             android:id="@+id/ivCoverPage"
@@ -27,11 +27,11 @@
             android:scaleType="fitXY"
             android:adjustViewBounds="true"
             android:padding="2dp"
-            app:imageUrl="@{movie.posterPath}"
+            app:imageUrl="@{tvShow.posterPath}"
             tools:src="@tools:sample/backgrounds/scenic"/>
 
         <TextView
-            android:text="@{movie.title}"
+            android:text="@{tvShow.name}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

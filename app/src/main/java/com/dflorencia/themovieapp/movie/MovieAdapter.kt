@@ -11,11 +11,8 @@ import com.dflorencia.themovieapi.movie.Movie
 import com.dflorencia.themovieapp.R
 import com.dflorencia.themovieapp.databinding.ItemMovieBinding
 
-class MovieAdapter(private val clickListener: MovieClickListener): ListAdapter<Movie, MovieAdapter.MovieViewHolder>(
-    ItemDiffCallback()
-) {
-
-//    private var lastPosition = -1
+class MovieAdapter(private val clickListener: MovieClickListener):
+    ListAdapter<Movie, MovieAdapter.MovieViewHolder>(ItemDiffCallback()) {
 
     class MovieViewHolder private constructor(val binding: ItemMovieBinding):
         RecyclerView.ViewHolder(binding.root){
@@ -55,10 +52,8 @@ class MovieAdapter(private val clickListener: MovieClickListener): ListAdapter<M
         val animation: Animation = AnimationUtils.loadAnimation(
             holder.binding.root.context,
             R.anim.down_from_top
-//            if (position > lastPosition) R.anim.up_from_bottom else R.anim.down_from_top
         )
         holder.itemView.startAnimation(animation)
-//        lastPosition = position
     }
 
     override fun onViewDetachedFromWindow(holder: MovieViewHolder) {

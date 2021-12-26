@@ -1,23 +1,32 @@
 package com.dflorencia.themovieapp
 
 import android.view.View
-import android.view.animation.AnimationUtils
-import android.webkit.WebView
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dflorencia.themovieapi.movie.Movie
+import com.dflorencia.themovieapi.tv_show.TvShow
 import com.dflorencia.themovieapp.movie.MovieAdapter
 import com.dflorencia.themovieapp.overview.ApiStatus
+import com.dflorencia.themovieapp.tv_show.TvShowAdapter
 
-@BindingAdapter("data")
-fun setData(recyclerView: RecyclerView, data: List<Movie>?){
+@BindingAdapter("visible")
+fun setVisibility(view: View, visibility: Boolean){
+    view.visibility = if (visibility) View.VISIBLE else View.GONE;
+}
+
+@BindingAdapter("dataMovie")
+fun setDataMovie(recyclerView: RecyclerView, data: List<Movie>?){
     val adapter = recyclerView.adapter as MovieAdapter
     adapter.submitList(data)
-    val controller = AnimationUtils.loadLayoutAnimation(recyclerView.context, R.anim.recycler_view_animation)
-    recyclerView.layoutAnimation = controller
+}
+
+@BindingAdapter("dataTvShow")
+fun setDataTvShow(recyclerView: RecyclerView, data: List<TvShow>?){
+    val adapter = recyclerView.adapter as TvShowAdapter
+    adapter.submitList(data)
 }
 
 @BindingAdapter("imageUrl")
@@ -31,8 +40,8 @@ fun setImageUrl(imageView: ImageView, url: String?) {
             .load(absolutUrl)
             .apply(
                 RequestOptions()
-                .placeholder(R.drawable.loading_animation)
-                .error(R.drawable.ic_broken))
+                    .placeholder(R.drawable.loading_animation)
+                    .error(R.drawable.ic_broken))
             .into(imageView)
 
         imageView.scaleType = ImageView.ScaleType.FIT_XY
@@ -44,7 +53,7 @@ fun setImageUrl(imageView: ImageView, url: String?) {
 
 @BindingAdapter("apiStatus")
 fun setStatus(statusImageView: ImageView,
-               status: ApiStatus?) {
+              status: ApiStatus?) {
     when (status) {
         ApiStatus.LOADING -> {
             statusImageView.visibility = View.VISIBLE
@@ -57,25 +66,5 @@ fun setStatus(statusImageView: ImageView,
         ApiStatus.DONE -> {
             statusImageView.visibility = View.GONE
         }
-    }
-}
-
-@BindingAdapter("videoUrl")
-fun setVideoUrl(webView: WebView, key: String?) {
-    key?.let {
-        val url = "https://www.youtube.com/embed/$key"
-        val dataUrl = "<html>" +
-                "<head>\n" +
-                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-                "</head>" +
-                "<body>" +
-                "<br>" +
-                "<iframe width=\"100%\" height=\"100%\" src=\"" +
-                url +
-                "\" frameborder=\"0\" allowfullscreen/>" +
-                "</body>" +
-                "</html>"
-
-        webView.loadData(dataUrl, "text/html", "utf-8")
     }
 }
